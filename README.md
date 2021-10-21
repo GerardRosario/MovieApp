@@ -1,7 +1,9 @@
 # MovieApp
 
 > Project 2: Seenema
+> 
 > Project Link: https://expo.io/@gerardrosario/projects/MovieApp
+> 
 > Project Link2: https://expo.io/--/to-exp/exp%3A%2F%2F192.168.0.3%3A19000
 
 # Pages of Project
