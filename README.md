@@ -14,6 +14,8 @@ App.js
 
 Calls all the screens and displays them in the application when they are navigated to.
 
+![Screenshot_20211020-182619_Expo Go](https://user-images.githubusercontent.com/55461102/138196771-4d7fe80e-0572-4ea1-a035-70690a572a36.jpg)
+
 # HomeScreen
 
 Not much in this page, it's just a landing page with the title of the application, which is Seenema and a logo created from an adobe stock image.
