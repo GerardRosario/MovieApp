@@ -14,7 +14,8 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}}>
+      <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}}> // Align the title to the center
+        // Create stack screen components with a name and a title. Title is modified by headerStyle.
         <Stack.Screen name="Seenema"component={HomeScreen} options={{ title: 'Seenema', headerStyle: { backgroundColor: '#0d73dd'}, headerTintColor: 'ivory', headerTitleStyle: {fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: 30 },  }}/>
         <Stack.Screen name="Search" component={SearchScreen} options={{ title: 'Search', headerStyle: { backgroundColor: '#0d73dd'}, headerTintColor: 'ivory', headerTitleStyle: {fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: 30 },  }} />
         <Stack.Screen name="Details" component={DetailScreen} options={{ title: 'Details', headerStyle: { backgroundColor: '#0d73dd'}, headerTintColor: 'ivory', headerTitleStyle: {fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: 30 },  }} />
