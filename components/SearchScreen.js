@@ -98,13 +98,14 @@ export default class SearchScreen extends Component {
           onChangeText={(searchWord) => this.setState({ searchWord })}
           value={this.state.searchWord}
           />
-          
+              
+          // When pressing a specific movie grab its ID and bring it to the details page
           <FlatList 
             style={{ backgroundColor: '#555353' }}
             data={movieData}
             renderItem={({item}) => (
               <View style={styles.casing}>
-                // When pressing a specific movie grab its ID and bring it to the details page
+                
                 <TouchableOpacity onPress={() => { this.props.navigation.navigate('Details', {id: item.imdbID}); }}>
 
                   <View style={styles.casing2}>
