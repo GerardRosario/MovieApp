@@ -29,7 +29,7 @@ export default class SearchScreen extends Component {
     };
   }
     
-   // function to load the next 5 results
+   // function to load the next results
   LoadNextPage = () =>{
     if (!this.onEndReachedCalledDuringMomentum) {
         this.setState({
@@ -38,22 +38,26 @@ export default class SearchScreen extends Component {
         this.onEndReachedCalledDuringMomentum = true;
       }
   }
-
+    
+    // function to load the previous results
   LoadBackPage = () =>{
     if (!this.onEndReachedCalledDuringMomentum) {
         this.setState({movieData: []})
         this.setState({
-        page: this.state.page === 1 ? this.state.page : this.state.page-1
+        // ternary. is page === 1 ? true. return current page : false. return page -1
+        page: this.state.page === 1 ? this.state.page : this.state.page-1 
         },()=> this.swUpdate())
         this.onEndReachedCalledDuringMomentum = true;
       }
   }
-
+    
+    //reset page to 1 and empty out movieData  
   resetPage = () => {
     this.setState({page: 1})
     this.setState({movieData: []})
   }
-
+    
+    // Updates the search word, so that the search results match the search word
   swUpdate() {
     console.log(this.state.searchWord)
     const uri =  'http://www.omdbapi.com/?s='
@@ -62,11 +66,16 @@ export default class SearchScreen extends Component {
     const pageCurrent = this.state.page
     fetch(uri+sWord+prodKey+pageCurrent)
     .then(response => response.json())
+      //ternary returns search result.
+      // if page is 1 returns empty states with first set of results.
+      // if page is not 1 returns results added to state.
     .then(results => this.setState({movieData: this.state.page != 1 ? results.Search : [...this.state.movieData, ...results.Search]   }))
     .catch(error => console.log(error));
     console.log(this.state.movieData)
   };
-
+    
+    // method to call resetPage and swUpdate
+    // Not called.
   allChange() {
     this.resetPage();
     this.swUpdate();
@@ -76,13 +85,16 @@ export default class SearchScreen extends Component {
   render() {
     const { movieData } = this.state;
     return (
-      <View style={styles.homeView}>
+      <View style={styles.homeView}> // Input area to put search word
           <Text style={styles.subtitle}>Search Movies & TV Series</Text>
           <TextInput
           style={styles.homeInput}
           placeholder="Enter Movie Title"
-          onFocus={() => this.resetPage()}
-          onSubmitEditing ={() => this.swUpdate()}
+          // once a searchwod starts gettign entered blank out the search results
+          onFocus={() => this.resetPage()} 
+          // when submit button is clicked update the search results.
+          onSubmitEditing ={() => this.swUpdate()} 
+          // When search word starts changing record the word
           onChangeText={(searchWord) => this.setState({ searchWord })}
           value={this.state.searchWord}
           />
@@ -92,7 +104,7 @@ export default class SearchScreen extends Component {
             data={movieData}
             renderItem={({item}) => (
               <View style={styles.casing}>
-
+                // When pressing a specific movie grab its ID and bring it to the details page
                 <TouchableOpacity onPress={() => { this.props.navigation.navigate('Details', {id: item.imdbID}); }}>
 
                   <View style={styles.casing2}>
@@ -117,8 +129,8 @@ export default class SearchScreen extends Component {
             keyExtractor={(item, index) => {return item.imdbID; }}
             ItemSeparatorComponent={ItemSeparatorView}
             onEndReachedThreshold={0.01}
-            onEndReached={this.LoadNextPage}
-            onRefresh={this.LoadBackPage}
+            onEndReached={this.LoadNextPage} // when pulling down
+            onRefresh={this.LoadBackPage} // when pulling up
             refreshing={this.state.isRefreshing}
             onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
             >
