@@ -3,6 +3,7 @@ import { Button, View, Text, TextInput, StyleSheet, FlatList, SafeAreaView, Scro
 import { createStackNavigator, createAppContainer } from '@react-navigation/stack';
 
 // http://www.omdbapi.com/?s=star&apikey=d4fafbd0&page=1
+// Create space between flat list items
 const ItemSeparatorView = () => {
     return (
       // Flat List Item Separator
@@ -16,6 +17,7 @@ const ItemSeparatorView = () => {
     );
   };
 
+// Constructor to setup states
 export default class SearchScreen extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +28,8 @@ export default class SearchScreen extends Component {
       isRefreshing: false
     };
   }
-
+    
+   // function to load the next 5 results
   LoadNextPage = () =>{
     if (!this.onEndReachedCalledDuringMomentum) {
         this.setState({
