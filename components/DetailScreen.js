@@ -6,6 +6,7 @@ import { createStackNavigator, createAppContainer } from '@react-navigation/stac
 // http://img.omdbapi.com/?i=tt3896198&h=600&apikey=d4fafbd0 Poster Api
 // http://www.omdbapi.com/?i=tt3896198&apikey=39f7f4f5
 
+// A method to create a space between the result of the flat list.
 const ItemSeparatorView = () => {
   return (
     // Flat List Item Separator
@@ -28,7 +29,9 @@ export default class DetailScreen extends Component {
     };
     const p1 = ''
   }
-
+  
+  // Method to call on the OMDB API.
+  // Use thisword to store the id of a movie that we will retrieve using the APi call
   firstCall(p1) {
     const uri1='http://www.omdbapi.com/?i='
     const thisWord= p1
@@ -39,17 +42,21 @@ export default class DetailScreen extends Component {
     .catch(error => console.log(error));
     console.log(thisWord)
   };
-
+  
+  // Method used to call getInfo, which carries id parameter
   componentDidMount() {
     this.getInfo();
     
   }
-
+  
+  // Method that is called to fetch the id paramter from prop.
+  // Then calls firstCall method with the id as an argument
   getInfo() {
     p1  = this.props.route.params.id;
     this.firstCall(p1);
   }
-
+  
+  //Return the deatils of a specific movie
   render() {
     const { movieInfo } = this.state;
     return(
@@ -90,6 +97,7 @@ export default class DetailScreen extends Component {
   }
 }
 
+// CSS Styling for this page
 const styles = StyleSheet.create({
   // #0d73dd blue
   // #8c8e8b grey
