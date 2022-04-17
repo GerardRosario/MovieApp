@@ -90,7 +90,7 @@ export default class SearchScreen extends Component {
           <TextInput
           style={styles.homeInput}
           placeholder="Enter Movie Title"
-          // once a searchwod starts gettign entered blank out the search results
+          // once a searchword starts gettign entered blank out the search results
           onFocus={() => this.resetPage()} 
           // when submit button is clicked update the search results.
           onSubmitEditing ={() => this.swUpdate()} 
@@ -99,7 +99,7 @@ export default class SearchScreen extends Component {
           value={this.state.searchWord}
           />
               
-          // When pressing a specific movie grab its ID and bring it to the details page
+          // When pressing a specific movie grab its ID and bring it to the details page as a prop.
           <FlatList 
             style={{ backgroundColor: '#555353' }}
             data={movieData}
@@ -123,7 +123,6 @@ export default class SearchScreen extends Component {
                   </View>
 
                 </TouchableOpacity>
-                
               </View>
             )}
             legacyImplementation={true}
